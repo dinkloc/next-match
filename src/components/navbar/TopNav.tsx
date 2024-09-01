@@ -8,6 +8,7 @@ import {
 import Link from "next/link";
 import React from "react";
 import { GiMatchHead } from "react-icons/gi";
+import NavLink from "./NavLink";
 
 export default function TopNav() {
   return (
@@ -15,7 +16,14 @@ export default function TopNav() {
       <Navbar
         maxWidth="xl"
         className="bg-gradient-to-r from-purple-300 to-pink-500"
-        classNames={{ item: ["text-xl", "text-white", "uppercase"] }}
+        classNames={{
+          item: [
+            "text-xl",
+            "text-white",
+            "uppercase",
+            "data-[active=true]:text-yellow-200",
+          ],
+        }}
       >
         <NavbarBrand as={Link} href="/">
           <GiMatchHead size={40} className="text-gray-200" />
@@ -25,22 +33,26 @@ export default function TopNav() {
           </div>
         </NavbarBrand>
         <NavbarContent justify="center">
-          <NavbarItem as={Link} href="/members">
-            Matches
-          </NavbarItem>
-          <NavbarItem as={Link} href="/members">
-            Lists
-          </NavbarItem>
-          <NavbarItem as={Link} href="/members">
-            Messages
-          </NavbarItem>
+          <NavLink href="/members" label="Matches" />
+          <NavLink href="/lists" label="Lists" />
+          <NavLink href="/messages" label="Messages" />
         </NavbarContent>
         <NavbarContent justify="end">
-          <Button variant="bordered" className="text-white">
+          <Button
+            as={Link}
+            href="/login"
+            variant="bordered"
+            className="text-white"
+          >
             Login
           </Button>
-          <Button variant="bordered" className="text-white">
-            Logout
+          <Button
+            as={Link}
+            href="/register"
+            variant="bordered"
+            className="text-white"
+          >
+            Register
           </Button>
         </NavbarContent>
       </Navbar>
